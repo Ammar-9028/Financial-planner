@@ -21,18 +21,33 @@ pipeline {
         }
 
         stage('maven build and deploy'){
-            steps {
-                sshagent(credentials: ['server-ssh-key']) {
-                    sh '''
-                        ssh ubuntu@${SERVER_IP} "
-                            rm -rf ${APP_NAME}
-                            cd ${APP_NAME}
-                            mvn clean package
-                            sudo cp target/finplan.war /opt/tomcat/webapps/
-                        "
-                    '''
+            // steps {
+            //     sshagent(credentials: ['server-ssh-key']) {
+            //         sh '''
+            //             ssh ubuntu@${SERVER_IP} "
+            //                 rm -rf ${APP_NAME}
+            //                 cd ${APP_NAME}
+            //                 mvn clean package
+            //                 sudo cp target/finplan.war /opt/tomcat/webapps/
+            //             "
+            //         '''
+            //     }
+            // }
+                steps {
+                    sshagent(credentials: ['server-ssh-key']) {
+                        sh '''
+                            echo "Testing SSH connection..."
+            
+                            ssh -vvv \
+                                -o ConnectTimeout=10 \
+                                -o BatchMode=yes \
+                                ubuntu@16.146.42.224 \
+                                "echo CONNECTED && hostname && whoami"
+                            
+                            echo "SSH command finished"
+                        '''
+                    }
                 }
-            }
         }
     }
 }
