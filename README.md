@@ -1,3 +1,5 @@
+kya be 
+
 # FinPlan - Personal Financial Planner (Java 21, Tomcat 9, Maven WAR)
 
 Modules: Investments (SIP/lump-sum/step-up), Asset allocation, Tax (India old vs new regime),
