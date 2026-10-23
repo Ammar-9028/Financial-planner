@@ -26,6 +26,7 @@ pipeline {
                     sh '''
                         ssh -o StrictHostKeyChecking=yes ubuntu@${SERVER_IP} "
                             rm -rf ${APP_NAME}
+                            git clone https://github.com/Sivachaithanya-Organisation/Financial-planner.git
                             cd ${APP_NAME}
                             mvn clean package
                             sudo cp target/finplan.war /opt/tomcat/webapps/
