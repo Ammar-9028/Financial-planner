@@ -9,7 +9,6 @@ pipeline {
     }
 
     stages {
-
         stage('Checkout') {
             steps {
                 checkout scm
@@ -20,7 +19,7 @@ pipeline {
             steps {
                 sh '''
                     java -version
-                    mvn -version
+                    javac -version
                     git --version
                 '''
             }
@@ -32,20 +31,18 @@ pipeline {
                     sh '''
                         set -eu
 
-                        echo "Connecting to Tomcat server..."
-
                         ssh -o StrictHostKeyChecking=accept-new \
                             -o BatchMode=yes \
-                            ubuntu@${SERVER_IP} \
-                            "set -e
-                             cd /tmp
-                             rm -rf ${APP_NAME}
-                             git clone ${REPO_URL} ${APP_NAME}
-                             cd ${APP_NAME}
-                             mvn clean package
-                             test -f target/finplan.war
-                             sudo cp target/finplan.war /opt/tomcat/webapps/
-                             echo 'Deployment completed successfully'
+                            ubuntu@${SERVER_IP} "
+                                set -e
+                                cd /tmp
+                                rm -rf ${APP_NAME}
+                                git clone ${REPO_URL} ${APP_NAME}
+                                cd ${APP_NAME}
+                                mvn clean package
+                                test -f target/finplan.war
+                                sudo cp target/finplan.war /opt/tomcat/webapps/
+                                echo 'Deployment completed successfully'
                             "
                     '''
                 }
@@ -55,10 +52,10 @@ pipeline {
 
     post {
         success {
-            echo 'Pipeline SUCCESS: Build and deployment completed.'
+            echo 'SUCCESS: Application deployed.'
         }
         failure {
-            echo 'Pipeline FAILED: Check Console Output for the exact error.'
+            echo 'FAILED: Check Console Output for the error.'
         }
     }
 }
