@@ -36,3 +36,5 @@ Return assumptions live in `InvestmentService.ASSUMED_RETURNS` (and are shown in
 `TaxService` constants. Update both each financial year; verify against current law.
 Extension ideas: persistence (Postgres) + login, live rates/NAV provider, more tax jurisdictions,
 Monte-Carlo projections, PDF report export.
+
+## WebhookTrigger
