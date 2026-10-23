@@ -41,6 +41,7 @@ pipeline {
                             ssh -vvv \
                                 -o ConnectTimeout=10 \
                                 -o BatchMode=yes \
+                                -o StrictHostKeyChecking=accept-new \
                                 ubuntu@16.146.42.224 \
                                 "echo CONNECTED && hostname && whoami"
                             
