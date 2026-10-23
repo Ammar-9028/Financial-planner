@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FinPlan - Personal Financial Planner</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <div class="brand">FinPlan</div>
+    <label class="cur">Currency
+      <select id="cur"><option>INR</option><option>USD</option></select>
+    </label>
+  </header>
+  <div class="layout">
+    <nav id="nav" aria-label="Planning modules"></nav>
+    <main>
+      <section class="card">
+        <h1 id="title"></h1>
+        <p id="blurb" class="muted"></p>
+        <form id="form"></form>
+      </section>
+      <section class="card" id="out" hidden>
+        <div id="result"></div>
+        <div id="chartWrap" hidden><canvas id="chart" height="130"></canvas></div>
+      </section>
+      <details class="card muted" id="assume"><summary>Market assumptions used</summary><div id="assumeBody"></div></details>
+    </main>
+  </div>
+  <footer>Educational estimates, not financial, tax or legal advice. Tax logic models India (verify slabs for the current year).</footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
