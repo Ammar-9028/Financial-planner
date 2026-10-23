@@ -17,7 +17,6 @@ pipeline {
         stage('Verify Tools') {
             steps {
                 sh 'javac -version'
-                sh 'mvn -version'
             }
         }
 
